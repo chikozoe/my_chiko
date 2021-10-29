@@ -22,7 +22,7 @@ public class ImgGo {
     //纬度
     private static Double latitude;
 
-    private static PropertiesDefaultHandler log;
+
 
 
     public static void main(String[] args) throws Exception, Exception {
@@ -100,12 +100,12 @@ public class ImgGo {
         Address address = new Address();
         address.setLon(longitude);
         address.setLat(latitude);
-        String url = "http://restapi.amap.com/v3/geocode/regeo?key={{618f4c131b75f405651c0f952a9b3552}}&s=rsv3&language=zh_cn&extensions=all&callback=&platform=JS&location=" + longitude + "," + latitude;
+        String url = "http://restapi.amap.com/v3/geocode/regeo?key=6e089c5053d8e4897851eaa7d1e23f26&s=rsv3&language=zh_cn&extensions=all&callback=&platform=JS&location=" + longitude + "," + latitude;
         HttpClient client = new HttpClient();
         GetMethod method = new GetMethod(url);
         int statusCode = client.executeMethod(method);
         if (statusCode != HttpStatus.SC_OK) {
-
+            method.getStatusLine();
         }
         byte[] responseBody = method.getResponseBody();
         String responseStr = new String(responseBody, "UTF-8");
@@ -120,6 +120,7 @@ public class ImgGo {
             address.setRoads(road1.getString("name") + "-" + road2.getString("name"));
         }
         System.out.println(address);
+        System.out.println(address.getAddress()+address.getRoads());
         return address;
     }
 
