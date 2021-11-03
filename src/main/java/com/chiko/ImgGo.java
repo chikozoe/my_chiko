@@ -100,7 +100,7 @@ public class ImgGo {
         Address address = new Address();
         address.setLon(longitude);
         address.setLat(latitude);
-        String url = "http://restapi.amap.com/v3/geocode/regeo?key=6e089c5053d8e4897851eaa7d1e23f26&s=rsv3&language=zh_cn&extensions=all&callback=&platform=JS&location=" + longitude + "," + latitude;
+        String url = "http://restapi.amap.com/v3/geocode/regeo?key={这里放入你的高德地图的key记得把大括号也给删掉如果出现什么问题报错的话可以去高德地图的报错信息看看对应的码}&s=rsv3&language=zh_cn&extensions=all&callback=&platform=JS&location=" + longitude + "," + latitude;
         HttpClient client = new HttpClient();
         GetMethod method = new GetMethod(url);
         int statusCode = client.executeMethod(method);
@@ -120,6 +120,7 @@ public class ImgGo {
             address.setRoads(road1.getString("name") + "-" + road2.getString("name"));
         }
         System.out.println(address);
+        //打印地址
         System.out.println(address.getAddress()+address.getRoads());
         return address;
     }
